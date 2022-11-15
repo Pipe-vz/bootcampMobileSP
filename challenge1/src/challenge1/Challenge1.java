@@ -5,34 +5,45 @@ import java.util.Scanner;
 
 public class Challenge1 {
 	
+	//Method to give ten random numbers where the first two numbers depend on user input. 
 	public static void tenNumbers() {
-		int[] numbers = {0,0,0,0,0,0,0,0,0,0};
-		System.out.println("ingrese 'TipoA' o 'TipoB' para generar la cadena de texto:");
 		
-		Scanner sc = new Scanner(System.in);
-		String input = sc.nextLine();
-		input = input.toLowerCase().trim();
-		System.out.println(input);
-		
-		if(input.matches("tipoa") || input.matches("tipob")) {
-			if(input.matches("tipoa")){
-				numbers[0]=5;
-				numbers[1]=4;
-			}else{
-				numbers[0]=0;
-				numbers[1]=8;
+		//initialize the variable to store the array and the method for storing user input
+		int[] numbers = null;
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter 'TipoA' or 'TipoB' to generate the text string: ");
+			
+
+			String input = sc.nextLine();
+			input = input.toLowerCase().replaceAll(" ", "");
+//			System.out.println(input);
+			
+			//check if the input matches the required parameters and generate the first two numbers
+			if(input.matches("tipoa") || input.matches("tipob")) {
+				numbers = new int[10];
+				if(input.matches("tipoa")){
+					numbers[0]=5;
+					numbers[1]=4;
+				}else{
+					numbers[0]=0;
+					numbers[1]=8;
+				}
+				//build the remaining random numbers
+				for (int i=2; i<10;i++){
+					numbers[i]=(int)(Math.random()*10);
+				}
+				//print the array as string
+				System.out.println(Arrays.toString(numbers));
 			}
-		}
-		else {
-			System.out.println("Verifique los valores ingresados e intente nuevamente!");
-			tenNumbers();
-		}
-		for (int i=2; i<10;i++){
-			numbers[i]=(int)(Math.random()*10);
+			//if the values entered do not match, it prints a message and executes the method again.
+			else {
+				System.out.println("Please check the entered values and try again.");
+				tenNumbers();
 			}
-					
-		 System.out.println(Arrays.toString(numbers));
+		}	 
 	}
+		
+
 	
 	public static void orderNumbers() {
 		int[] numbersToOrder;
