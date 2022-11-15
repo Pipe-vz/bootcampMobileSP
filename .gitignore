@@ -13,17 +13,16 @@ node_modules
 # Ignora archivos de configuración SASS
 .sass-cache
 
-**/target/
-/target/
-*/target/*
+.settings/
+bin/
+tmp/
+.metadata
 .classpath
 .project
-.settings
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-*.iml
-*.idea
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
